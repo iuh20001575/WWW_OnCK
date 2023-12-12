@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Update person</h1>
+
+    <form th:action="@{/persons/{id}/update(id=${person.id})}" method="post">
+        <input type="text" th:field="${person.fullname}">
+        <input type="email" th:field="${person.email}">
+        <input type="date" th:field="${person.dob}">
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>Person manage</h1>
+    <a th:href="@{/persons/add}">Add person</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Full Name</th>
+                <th>Email</th>
+                <th>Date of birth</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="person : ${persons}">
+                <td th:text="${person.id}"></td>
+                <td th:text="${person.fullname}"></td>
+                <td th:text="${person.email}"></td>
+                <td th:text="${person.dob}"></td>
+                <td>
+                    <a th:href="@{persons/{id}/update(id=${person.id})}">Update</a>
+                </td>
+                <td>
+                    <form th:action="@{persons/{id}/delete(id=${person.id})}" method="post">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div style="display: flex; gap: 8px">
+        <a th:href="@{/persons(page=${page}, size=${persons.size})}" th:each="page : ${pages}" th:text="${page}"></a>
+    </div>
+</body>
+</html>
